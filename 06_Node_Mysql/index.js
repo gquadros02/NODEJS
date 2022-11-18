@@ -49,7 +49,7 @@ app.post('/usuario/save', (req,res) => {
 });
 app.get('/clientes', (req,res) => {
 
-    const sql = `SELECT id_cliente, nome_cliente, endereco_cliente, cidade_cliente, cpf_cliente FROM cliente`;
+    const sql = `SELECT id_cliente, nome_cliente, endereco_cliente, email_cliente, cidade_cliente, cpf_cliente, data_nascimento_cliente FROM cliente`;
 
     comun.query(sql, (erro, clientes) => {
         if(erro){
@@ -63,11 +63,13 @@ app.get('/clientes', (req,res) => {
 app.post('/cliente/save', (req,res) => {
     const nome                =req.body.nome;
     const endereco            =req.body.endereco;
+    const email               =req.body.email;
     const cidade              =req.body.cidade;
     const cpf                 =req.body.cpf;
+    const dataNascimento      =req.body.dataNascimento;
     
-    const sql = `INSERT INTO cliente (nome_cliente,endereco_cliente,cidade_cliente,cpf_cliente)
-        VALUES ('${nome}','${endereco}','${cidade}','${cpf}')`;
+    const sql = `INSERT INTO cliente (nome_cliente,endereco_cliente,email_cliente,cidade_cliente,cpf_cliente,data_nascimento_cliente)
+        VALUES ('${nome}','${endereco}','${email}','${cidade}','${cpf}','${dataNascimento}')`;
     comun.query(sql, (erro) => {
         if(erro){
             console.log(erro);
