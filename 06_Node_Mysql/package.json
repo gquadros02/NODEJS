@@ -1,20 +1,24 @@
 {
-  "name": "06_node_mysql",
+  "name": "nodejs",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./index.js localhost 3000"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gquadros02/NODEJS.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/gquadros02/NODEJS/issues"
+  },
+  "homepage": "https://github.com/gquadros02/NODEJS#readme",
   "dependencies": {
-    "crud": "^0.0.28",
-    "express": "^4.18.2",
-    "express-handlebars": "^6.0.6",
-    "mysql": "^2.18.1",
     "nodemon": "^2.0.20"
   }
 }
