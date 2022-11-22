@@ -15,10 +15,10 @@
 </form>
 <hr>
 <h1>Lista de Clientes</h1>
-<table border="solid 2px">   
+<table border = class="table table-striped table-sm">   
         <tr>
             <th>Id Cliente</th>
-            <th>Nome Cliente</th>
+            <th>Nome</th>
             <th>Endereço</th>
             <th>Email</th>
             <th>Cidade</th>
@@ -34,6 +34,7 @@
             <td>{{this.cidade_cliente}}</td>
             <td>{{this.cpf_cliente}}</td>
             <td>{{this.data_nascimento_cliente}}</td>
+            <td><a href="/cliente/">Exibir detalhes</a></td>
         </tr>
          {{/each}}
 
