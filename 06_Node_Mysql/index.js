@@ -1,7 +1,7 @@
 const { application } = require('express');
 const express   = require('express');               //Importando pacote/módulo Express
 const exphbs    = require('express-handlebars');    //Importando pacote/módulo Handlebars
-const mysql     = require('mysql');
+const comun     = require('./db/conn');
 
 const app       = express(); //Instanciando o método Express
 
@@ -21,9 +21,11 @@ app.use(express.json());
 
 app.get('/usuarios', (req,res) => {
 
-const sql = `SELECT id_usuario, nome_usuario, endereco_usuario, email_usuario, data_nascimento_usuario FROM usuario`;
+const sql = `SELECT ??, ??, ??, ??, ?? FROM ??`;
 
-comun.query(sql, (erro, usuarios) => {
+const array = ['id_usuario', 'nome_usuario', 'endereco_usuario', 'email_usuario', 'data_nascimento_usuario', 'usuario'];
+
+comun.query(sql, array,(erro, usuarios) => {
 if(erro){
     console.log(erro);
     return 
@@ -36,15 +38,18 @@ res.render('usuarios', {usuarios});
 app.get('/usuario/:id', (req, res) => {
 const id = req.params.id;
 
-const sql = `select id_usuario, 
-                nome_usuario, 
-                endereco_usuario, 
-                email_usuario, 
-                data_nascimento_usuario 
-                from usuario
-                where id_usuario = ${id}`;
+const sql = `select ??, 
+                    ??, 
+                    ??, 
+                    ??, 
+                    ?? 
+                    from ??
+                    where ??`;
+  const array = ['id_usuario', 'nome_usuario', 'endereco_usuario', 'email_usuario', 'data_nascimento_usuario', 
+                 'usuario', 
+                 'id_usuario', id];              
 
-comun.query(sql, (erro, resp) => {
+comun.query(sql, array,(erro, resp) => {
 if(erro){
     console.log(erro);
     return 
@@ -61,9 +66,11 @@ if(erro){
 app.get('/usuario/delete/:id', (req, res) => {
     const id = req.params.id;
     
-    const sql = `DELETE FROM usuario WHERE id_usuario = ${id}`;
+    const sql = `DELETE FROM ?? 
+                 WHERE ??`;
     
-    comun.query(sql, (erro) => {
+    const array = ['usuario', 'id_usuario', id];
+    comun.query(sql, array,(erro) => {
     if(erro){
         console.log(erro);
         return 
@@ -77,15 +84,16 @@ app.get('/usuario/delete/:id', (req, res) => {
 app.get('/usuario/edit/:id', (req, res) => {
     const id = req.params.id;
 
-const sql = `select id_usuario, 
-                nome_usuario, 
-                endereco_usuario, 
-                email_usuario, 
-                data_nascimento_usuario 
-                from usuario
-                where id_usuario = ${id}`;
+const sql = `select ??, 
+                    ??, 
+                    ??, 
+                    ??, 
+                    ?? 
+                    from ??
+                    where ??`;
+const array = ['id_usuario', 'nome_usuario', 'endereco_usuario', 'email_usuario', 'data_nascimento_usuario', 'usuario', 'id_usuario', id];
 
-comun.query(sql, (erro, resp) => {
+comun.query(sql, array,(erro, resp) => {
 if(erro){
     console.log(erro);
     return 
@@ -127,8 +135,12 @@ app.post('/usuario/save', (req,res) => {
     const email               =req.body.email;
     const dataNascimento      =req.body.dataNascimento;
     
-const sql = `INSERT INTO usuario (nome_usuario,endereco_usuario,email_usuario,data_nascimento_usuario)
-VALUES ('${nome}','${endereco}','${email}','${dataNascimento}')`;
+const sql = `INSERT INTO usuario (??, ??, ??, ??) VALUES (?, ?, ?, ?)`;
+
+
+const array = ['nome_usuario','endereco_usuario','email_usuario','data_nascimento_usuario',
+                nome, endereco, email, dataNascimento];       
+
 comun.query(sql, (erro) => {
 if(erro){
     console.log(erro);
@@ -170,30 +182,18 @@ res.redirect('/cliente');
 });
        
 });
+
 //Rota principal da aplicação
 app.get('/', (req, res) => {
     res.render('home');
 });
 
-//Executar o servidor
-const comun = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'db_comum'
-});
-//Conectando com o banco de dados
-comun.connect((erro) => {
-    if (erro) {
-        console.log(erro);
-        return
-    }
-    console.log("Conectou no banco db_comum");
+
+    
     app.listen(3000, () =>{
-        console.log("Servidor rodando em porta 3000");
+        
     });
-});
+
 
 
 
