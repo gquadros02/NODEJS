@@ -112,11 +112,16 @@ app.post('/usuario/edit/save', (req,res) => {
     const dataNascimento      =req.body.dataNascimento;
 
     const sql = `UPDATE usuario 
-                SET nome_usuario = '${nome}',
-                endereco_usuario = '${endereco}',
-                email_usuario = '${email}',
-                data_nascimento_usuario = '${dataNascimento}'
-                where id_usuario = ${id}`;
+                SET ?? = ?, 
+                ?? = ?, 
+                ?? = ?, 
+                ?? = ?, 
+                where ?? = ?`;
+const array =  ['usuario', nome, 
+                'endereco_usuario', endereco, 
+                'email_usuario', email, 
+                'data_nascimento_usuario', dataNascimento, 
+                'id_usuario', id];
 
 comun.query(sql, (erro, resp) => {
     if(erro){
