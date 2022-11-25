@@ -1,0 +1,25 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js localhost 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gquadros02/NODEJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gquadros02/NODEJS/issues"
+  },
+  "homepage": "https://github.com/gquadros02/NODEJS#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {},
+  "description": ""
+}
