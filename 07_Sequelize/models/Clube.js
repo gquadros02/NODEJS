@@ -1,6 +1,6 @@
 const db            =  require('../db/conn'); 
 const {DataTypes}   =  require('sequelize');
-
+const express = require('express');
 
 const Clube = db.define('Clube', {
     nome:{type: DataTypes.STRING(1000), allowNull: false},
